@@ -1,0 +1,68 @@
+/* Styles de base */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Bouton pour ouvrir la modale */
+#loginBtn, #logoutBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Styles de la modale */
+.modal {
+    display: none; /* Cacher la modale par défaut */
+    position: fixed; /* Rester en place même lors du défilement */
+    z-index: 1; /* Positionner la modale au-dessus de tout le reste */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largeur complète */
+    height: 100%; /* Hauteur complète */
+    overflow: auto; /* Activer le défilement si nécessaire */
+    background-color: rgb(0,0,0); /* Couleur de fond noire */
+    background-color: rgba(0,0,0,0.4); /* Opacité de fond */
+}
+
+/* Contenu de la modale */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% du haut et centré horizontalement */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%; /* Peut être ajusté pour la largeur souhaitée */
+}
+
+/* Bouton de fermeture de la modale */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.separator {
+    width: 80%;
+    height: 2px;
+    background-color: #ccc;
+    margin: 20px auto;
+}
+
+.add-photo-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
