@@ -9,11 +9,16 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
 		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
+	<div id="editModeBar" class="edit-mode-bar hidden">
+		<i class="fa-solid fa-pen-to-square"></i>
+		<p>Mode édition</p>
+	</div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -43,16 +48,12 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
-			<button id="openModalBtn">Ouvrir la modale</button>
-			<div id="myModal" class="modal">
-				<div class="modal-content">
-					<span class="close">&times;</span>
-					<h2>Galerie photo</h2>
-					<section id="projects" class="projects"></section>
-					<div class="separator"></div>
-					<button id="addPhotoBtn" class="add-photo-btn">Ajouter une photo</button>
-				</div>
+			<div class="projects-header">
+				<h2 class="projects-title">Mes projets</h2>
+				<button id="openModalBtn" class="modify-btn">
+					<i class="fa-solid fa-pen-to-square"></i>
+					Modifier
+				</button>
 			</div>
 			<div class="filters">
 				<div class="filter" id="0">Tous</div>
@@ -81,7 +82,43 @@
 			</ul>
 		</nav>
 	</footer>
-	
+	<div id="myModal" class="modal">
+		<div class="modal-content">
+			<div id="modal-content1">
+				<span class="close">&times;</span>
+				<h2 class="galerie">Galerie photo</h2>
+				<section id="projects" class="projects"></section>
+				<div class="separator"></div>
+				<button id="addPhotoBtn" class="add-photo-btn">Ajouter une photo</button>
+			</div>
+			<div id="modal-content2" class="hidden">
+				<span class="close">&times;</span>
+				<span class="back">&larr;</span>
+				<h2 class="galerie">Ajout photo</h2>
+				<form id="addPhotoForm">
+					<div class="form-group">
+						<div class="photo-frame">
+							<i class="fa-regular fa-image"></i>
+							<button>+ Ajouter photo</button>
+							<p>jpg, png : 4mo max</p>
+							<input type="file" id="fileInput" name="image" accept=".png, .jpg" required>
+							<img id="preview" src="" alt="Prévisualisation" class="hidden">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="title">Titre</label>
+						<input type="text" id="title" name="title" required>
+					</div>
+					<div class="form-group">
+						<label for="category">Catégorie</label>
+						<select id="category" name="category">
+                        </select>
+					</div>
+					<button type="submit" class="btn-valider-photo" id="btnValider" disabled>Valider</button>
+				</form>
+			</div>
+		</div>
+	</div>
 	<script type="text/javascript" src="./assets/scripts/user.js"></script>
 	<script type="text/javascript" src="./assets/scripts/index.js"></script>
 	<script type="text/javascript" src="./assets/scripts/modale.js"></script>

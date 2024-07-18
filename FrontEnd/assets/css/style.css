@@ -133,8 +133,8 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -223,28 +223,73 @@ footer nav ul {
     cursor: pointer;
 }
 
+.modify-btn {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.projects-header {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    margin: 20px 0;
+}
+
+.projects-header h2 {
+    margin: 0;
+    margin-right: 10px; 
+    font-size: 2em; 
+    color: #2e5e4e; 
+}
+
+.projects-header button {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1em; 
+    color: black; 
+}
+
+.projects-header button i {
+    margin-right: 5px; 
+    font-size: 1.2em; 
+}
+
+.projects-title {
+    display: flex;
+    align-items: center;
+}
+
 /* Styles de la modale */
 .modal {
-    display: none; /* Cacher la modale par défaut */
-    position: fixed; /* Rester en place même lors du défilement */
-    z-index: 1; /* Positionner la modale au-dessus de tout le reste */
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
     left: 0;
     top: 0;
-    width: 100%; /* Largeur complète */
-    height: 100%; /* Hauteur complète */
-    overflow: auto; /* Activer le défilement si nécessaire */
-    background-color: rgb(0,0,0); /* Couleur de fond noire */
-    background-color: rgba(0,0,0,0.4); /* Opacité de fond */
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
 }
 
 /* Contenu de la modale */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% du haut et centré horizontalement */
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 30%; /* Peut être ajusté pour la largeur souhaitée */
-	height: 60%;
+    width: 30%;
+	height: 61%;
+    overflow: auto;
 }
 
 /* Bouton de fermeture de la modale */
@@ -262,6 +307,15 @@ footer nav ul {
     cursor: pointer;
 }
 
+.galerie {
+	padding-top: 51px;
+	text-align: center;
+	margin: auto;
+	width: 100%;
+	height: auto;
+	color: black;
+}
+
 .projects {
     display: flex;
     flex-wrap: wrap;
@@ -273,19 +327,19 @@ footer nav ul {
     margin: 5px;
 }
 
-.project img {
-    width: 75px;
-    height: 100px;
-    object-fit: cover;
-}
-
 .trash-icon {
     position: absolute;
     top: 10px;
     right: 10px;
-    width: 24px;
-    height: 24px;
+    width: 24px !important;
+    height: 24px !important;
     cursor: pointer;
+}
+
+.project img {
+    width: 75px;
+    height: 100px;
+    object-fit: cover;
 }
 
 .separator {
@@ -299,11 +353,30 @@ footer nav ul {
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
-    background-color: #4CAF50;
+	background-color: #1D6154;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 18px;
     font-size: 16px;
+	cursor: pointer;
+	width: 50%;
+}
+
+.btn-valider-photo {
+	display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 18px;
+    font-size: 16px;
+	width: 50%;
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+}
+
+.btn-valider-photo.enabled{
+    background-color: #1D6154;
     cursor: pointer;
 }
 
@@ -321,7 +394,7 @@ footer nav ul {
 }
 
 #uploadPhotoBtn {
-    background-color: #4CAF50;
+    background-color: #1D6154;
     color: white;
     border: none;
     border-radius: 5px;
@@ -331,7 +404,7 @@ footer nav ul {
 }
 
 #uploadPhotoBtn:hover {
-    background-color: #45a049;
+    background-color: #1D6154;
 }
 
 .form-group {
@@ -345,8 +418,83 @@ footer nav ul {
 
 .form-group input,
 .form-group select {
+    box-sizing: border-box;
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.back {
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.edit-mode-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.edit-mode-bar i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.edit-mode-bar span {
+    font-size: 1.2em;
+}
+
+#addPhotoForm {
+    padding: 20px 50px;
+}
+
+.photo-frame {
+    flex-direction: column;
+    gap: 10px;
+    background-color: #E8F1F6;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: #444444;
+}
+
+.photo-frame button {
+    width: 173px;
+    height: 36px;
+    border-radius: 50px;
+    border: 0;
+    background-color: #CBD6DC;
+    color: #306685;
+}
+
+.photo-frame input[type="file"] {
+    z-index: 1;
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.photo-frame img {
+    position: absolute;
+    object-fit: contain;
+    height: 100%;
+}
+
+.photo-frame .fa-image {
+    font-size: 76px;
+    color: #CBD6DC;
 }

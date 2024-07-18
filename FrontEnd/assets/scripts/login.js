@@ -18,17 +18,6 @@ form.addEventListener('submit', function(event) { // submit qui permet de soumet
 
     login(email, password);
 
-    /*if (email === 'sophie.bluel@test.tld' && password === 'S0phie') {
-        // Connexion réussie
-        errorMessage.textContent = ''; // Effacer le message d'erreur s'il y en avait un
-        alert('Connexion réussie !');
-        // Rediriger vers la page d'accueil après une connexion réussie
-        window.location.href = '../index.html';
-    }
-    else {
-        // Connexion échouée
-        errorMessage.textContent = 'E-mail ou mot de passe incorrect.';
-    }*/
 });
 
 async function login(email, password) {
@@ -52,7 +41,6 @@ async function login(email, password) {
             return response.json();
         })
         .then(data => {
-            console.log(data.token);
             localStorage.setItem('usertoken', data.token);
             window.location.href = '../index.html';
         })
@@ -61,21 +49,3 @@ async function login(email, password) {
             errorMessage.textContent = 'E-mail ou mot de passe incorrect.';
         });
 }
-
-/*// Stockage des informations de session dans localStorage après une connexion réussie
-localStorage.setItem('userToken', '');
-
-// Récupération des informations de session depuis localStorage
-const userToken = localStorage.getItem('userToken');
-
-// Suppression des informations de session de localStorage après la déconnexion
-localStorage.removeItem('userToken');*/
-
-
-/*// Fonction pour déconnecter l'utilisateur
-function logout() {
-    // Supprimer les données de session (par exemple, un jeton d'authentification)
-    localStorage.removeItem('usertoken'); // Supprimer le jeton d'authentification stocké dans localStorage
-    
-    window.location.href = ''; 
-}*/
