@@ -126,11 +126,6 @@ titleInput.addEventListener('input', checkFormValidity);
 categorySelect.addEventListener('change', checkFormValidity);
 
 
-fileInput.onchange = checkFormValidity;
-titleInput.oninput = checkFormValidity;
-categorySelect.onchange = checkFormValidity;
-
-
 addPhotoForm.onsubmit = async function (event) {
     event.preventDefault();
 
@@ -144,14 +139,13 @@ addPhotoForm.onsubmit = async function (event) {
             }
         });
         if (response.ok) {
-            // Afficher à nouveau la galerie
+            // reinitialise le formulaire
             addPhotoForm.reset();
-            modalContent1.style.display = 'block';
-            modalContent2.style.display = 'none';
             // Actualiser la liste des projets
             fetchWorks();
             modal.style.display = 'none';
             checkFormValidity();
+            previewImage.src = '';
         } else {
             console.error('Erreur lors de l\'ajout de la photo:', response.statusText);
         }

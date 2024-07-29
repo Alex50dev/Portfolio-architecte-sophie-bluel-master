@@ -4,7 +4,7 @@ const passwordInput = document.getElementById('password');
 const errorMessage = document.querySelector('.message-error');
 
 form.addEventListener('submit', function(event) { // submit qui permet de soumettre
-    event.preventDefault(); // empêche d'envoyer la demande par défaut 
+    event.preventDefault(); // empêche l'action par default du formulaire 
     
     // Récupérer les valeurs dans email et password
     const email = emailInput.value.trim(); //.trim qui permet d'éffacer les espaces

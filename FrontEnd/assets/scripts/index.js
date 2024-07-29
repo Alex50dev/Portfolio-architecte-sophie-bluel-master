@@ -49,7 +49,6 @@ function fetchFilters() {
             allCategories.forEach(filter => {
                 const filterElement = document.createElement('div');
                 filterElement.classList.add('filter');
-                filterElement.setAttribute('id', filter.id);
                 filterElement.textContent = filter.name;
                 filterContainer.appendChild(filterElement);
 
@@ -58,7 +57,7 @@ function fetchFilters() {
                     applyFilter(filter.id);
                 });
             });
-            document.getElementById("0").addEventListener('click', () => {
+            document.getElementById("filtreTous").addEventListener('click', () => {
                 applyFilter(0);
             });
         })
