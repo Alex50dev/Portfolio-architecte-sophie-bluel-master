@@ -15,6 +15,8 @@ const categorySelect = document.getElementById('category');
 const fileInput = document.getElementById('fileInput');
 const titleInput = document.getElementById('title');
 const previewImage = document.getElementById('preview');
+const previewButton = document.getElementById('previewButton');
+const previewText = document.getElementById('previewText');
 
 function displayProjects() {
     const projectsContainer = document.getElementById("projects");
@@ -112,7 +114,7 @@ backBtn.onclick = function () {
 fileInput.addEventListener('change', () => {
     checkFormValidity();
     const file = fileInput.files[0];
-
+    
     if (file) {
         const validTypes = ['image/png', 'image/jpeg'];
         
@@ -121,17 +123,23 @@ fileInput.addEventListener('change', () => {
             const srcDeLaPhoto = URL.createObjectURL(file);
             previewImage.src = srcDeLaPhoto;
             previewImage.classList.remove('hidden');
+            previewButton.classList.add('hidden');
+            previewText.classList.add('hidden');
         } else {
             // Si le type de fichier n'est pas valide, réinitialiser l'input file
             alert('Veuillez sélectionner un fichier au format PNG ou JPG.');
             fileInput.value = ''; // Réinitialise l'input file
             previewImage.src = ''; // Masque l'image précédente si elle existe
             previewImage.classList.add('hidden');
+            previewButton.classList.remove('hidden');
+            previewText.classList.remove('hidden');
         }
     } else {
         // Si aucun fichier n'est sélectionné, masquer l'image de prévisualisation
         previewImage.src = '';
         previewImage.classList.add('hidden');
+        previewButton.classList.remove('hidden');
+        previewText.classList.remove('hidden');
     }
 });
 

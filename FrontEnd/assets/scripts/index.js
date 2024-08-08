@@ -45,6 +45,10 @@ function fetchFilters() {
         })
         .then(response => {
             allCategories = response;
+
+            const defaultFilter = document.getElementById("filtreTous");
+            defaultFilter.classList.add('active');
+            
             // Ajouter les filtres dynamiquement à partir de la réponse de l'API
             allCategories.forEach(filter => {
                 const filterElement = document.createElement('div');
@@ -53,34 +57,14 @@ function fetchFilters() {
                 filterContainer.appendChild(filterElement);
 
                 const defaultFilter = document.getElementById("filtreTous");
-                defaultFilter.classList.add('default-active');
                 defaultFilter.addEventListener('click', () => {
-                    // Retirer la classe 'active' de tous les autres filtres
-                    const allFilters = document.querySelectorAll('.filter');
-                    allFilters.forEach(filter => {
-                        filter.classList.remove('active');
-                    });
-
-                    // Ajouter la classe 'default-active' au filtre "Tous"
-                    defaultFilter.classList.add('default-active');
-
-                    // Appliquer le filtre "Tous"
                     applyFilter(0);
+                    updateFilterClasses(0);  
                 });
 
                 filterElement.addEventListener('click', () => {
-                    // Retirer la classe 'active' et 'default-active' de tous les filtres
-                    const allFilters = document.querySelectorAll('.filter');
-                    allFilters.forEach(filter => {
-                        filter.classList.remove('active');
-                        defaultFilter.classList.remove('default-active');
-                    });
-
-                    // Ajouter la classe 'active' au filtre cliqué
-                    filterElement.classList.add('active');
-
-                    // Appliquer le filtre correspondant
                     applyFilter(filter.id);
+                    updateFilterClasses(filter.id);
                 });
 
             });
@@ -100,6 +84,7 @@ function applyFilter(filterId) {
         if (filterId === 0) {
             // Afficher toutes les images si le filtre sélectionné est "Tous" (id=0)
             image.style.display = 'block';
+
         } else {
             // Sinon, afficher uniquement les images correspondant au filtre sélectionné
             if (Number(image.dataset.category) === filterId) {
@@ -112,7 +97,31 @@ function applyFilter(filterId) {
 
 }
 
+// Fonction pour mettre à jour la classe active des filtres
+function updateFilterClasses(selectedFilterId) {
+    const allFilters = document.querySelectorAll('.filter');
+    allFilters.forEach(filter => {
+        if (filter.textContent === getFilterNameById(selectedFilterId)) {
+            filter.classList.add('active'); // Ajouter la classe 'active' au filtre sélectionné
+        } else {
+            filter.classList.remove('active'); // Retirer la classe 'active' des autres filtres
+        }
+    });
 
+    // Gestion de la classe 'active' pour le filtre "Tous"
+    const defaultFilter = document.getElementById("filtreTous");
+    if (selectedFilterId === 0) {
+        defaultFilter.classList.add('active');
+    } else {
+        defaultFilter.classList.remove('active');
+    }
+}
+
+// Fonction pour obtenir le nom du filtre en fonction de son ID
+function getFilterNameById(filterId) {
+    const filter = allCategories.find(cat => cat.id === filterId);
+    return filter ? filter.name : '';
+}
 
 
 document.addEventListener('DOMContentLoaded', function () {
