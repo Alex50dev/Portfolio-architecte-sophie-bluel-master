@@ -2,6 +2,7 @@ let allWorks;
 let allCategories;
 const filterContainer = document.querySelector('.filters');
 const galleryContainer = document.querySelector('.gallery');
+const defaultFilter = document.getElementById("filtreTous");
 function fetchWorks() {
     const apiUrl = 'http://localhost:5678/api/works';
     fetch(apiUrl)
@@ -46,7 +47,6 @@ function fetchFilters() {
         .then(response => {
             allCategories = response;
 
-            const defaultFilter = document.getElementById("filtreTous");
             defaultFilter.classList.add('active');
             
             // Ajouter les filtres dynamiquement à partir de la réponse de l'API
@@ -109,7 +109,6 @@ function updateFilterClasses(selectedFilterId) {
     });
 
     // Gestion de la classe 'active' pour le filtre "Tous"
-    const defaultFilter = document.getElementById("filtreTous");
     if (selectedFilterId === 0) {
         defaultFilter.classList.add('active');
     } else {
