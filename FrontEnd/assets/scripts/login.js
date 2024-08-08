@@ -38,7 +38,13 @@ async function login(email, password) {
 
     await fetch(apiUrl, params)
         .then(response => {
-            return response.json();
+            if (response.ok) {
+                return response.json();
+            }
+            else {
+                throw 'E-mail ou mot de passe incorrect.'
+            }
+            
         })
         .then(data => {
             localStorage.setItem('usertoken', data.token);
@@ -46,6 +52,6 @@ async function login(email, password) {
         })
         .catch(error => { 
              // Connexion échouée
-            errorMessage.textContent = 'E-mail ou mot de passe incorrect.';
+            errorMessage.textContent = error;
         });
 }
