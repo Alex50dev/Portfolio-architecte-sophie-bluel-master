@@ -112,11 +112,24 @@ backBtn.onclick = function () {
 fileInput.addEventListener('change', () => {
     checkFormValidity();
     const file = fileInput.files[0];
+
     if (file) {
-        const srcDeLaPhoto = URL.createObjectURL(file)
-        previewImage.src = srcDeLaPhoto;
-        previewImage.classList.remove('hidden');
+        const validTypes = ['image/png', 'image/jpeg'];
+        
+        // Vérifier si le type du fichier est PNG ou JPG
+        if (validTypes.includes(file.type)) {
+            const srcDeLaPhoto = URL.createObjectURL(file);
+            previewImage.src = srcDeLaPhoto;
+            previewImage.classList.remove('hidden');
+        } else {
+            // Si le type de fichier n'est pas valide, réinitialiser l'input file
+            alert('Veuillez sélectionner un fichier au format PNG ou JPG.');
+            fileInput.value = ''; // Réinitialise l'input file
+            previewImage.src = ''; // Masque l'image précédente si elle existe
+            previewImage.classList.add('hidden');
+        }
     } else {
+        // Si aucun fichier n'est sélectionné, masquer l'image de prévisualisation
         previewImage.src = '';
         previewImage.classList.add('hidden');
     }
