@@ -498,3 +498,13 @@ footer nav ul {
     font-size: 76px;
     color: #CBD6DC;
 }
+
+.filter.default-active {
+    background-color: #1D6154;
+    color: white;
+}
+
+.filter.active {
+    background-color: #1D6154;
+    color: white;
+}

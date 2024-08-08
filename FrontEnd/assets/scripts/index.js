@@ -1,4 +1,4 @@
-let allWorks; 
+let allWorks;
 let allCategories;
 const filterContainer = document.querySelector('.filters');
 const galleryContainer = document.querySelector('.gallery');
@@ -52,13 +52,37 @@ function fetchFilters() {
                 filterElement.textContent = filter.name;
                 filterContainer.appendChild(filterElement);
 
-                // Ajouter un événement de clic pour filtrer les photos
+                const defaultFilter = document.getElementById("filtreTous");
+                defaultFilter.classList.add('default-active');
+                defaultFilter.addEventListener('click', () => {
+                    // Retirer la classe 'active' de tous les autres filtres
+                    const allFilters = document.querySelectorAll('.filter');
+                    allFilters.forEach(filter => {
+                        filter.classList.remove('active');
+                    });
+
+                    // Ajouter la classe 'default-active' au filtre "Tous"
+                    defaultFilter.classList.add('default-active');
+
+                    // Appliquer le filtre "Tous"
+                    applyFilter(0);
+                });
+
                 filterElement.addEventListener('click', () => {
+                    // Retirer la classe 'active' et 'default-active' de tous les filtres
+                    const allFilters = document.querySelectorAll('.filter');
+                    allFilters.forEach(filter => {
+                        filter.classList.remove('active');
+                        defaultFilter.classList.remove('default-active');
+                    });
+
+                    // Ajouter la classe 'active' au filtre cliqué
+                    filterElement.classList.add('active');
+
+                    // Appliquer le filtre correspondant
                     applyFilter(filter.id);
                 });
-            });
-            document.getElementById("filtreTous").addEventListener('click', () => {
-                applyFilter(0);
+
             });
         })
         .catch(error => {
@@ -85,9 +109,14 @@ function applyFilter(filterId) {
             }
         }
     }
+
 }
 
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
+
 
     checkAuthentication();
     // Appeler la fonction pour récupérer les filtres au chargement de la page
@@ -95,6 +124,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Appeler la fonction pour récupérer les travaux au chargement de la page
     fetchWorks();
-
 
 });
